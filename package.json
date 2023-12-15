@@ -1,0 +1,7 @@
+{
+  "name": "vr.xtn.boundtool",
+  "displayName": "XTN.BoundTool",
+  "description": "You can dynamic add a suited BoxCollider to any gameObject.",
+  "version": "1.0.0",
+  "license": ""
+}
