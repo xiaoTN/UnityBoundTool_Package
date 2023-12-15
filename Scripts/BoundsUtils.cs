@@ -42,43 +42,55 @@ namespace XTN.BoundTool
         }
 
         /// <summary>
-        /// 如果已经存在BoxCollider，就不添加了
+        /// 给物体添加合适的BoxCollider
         /// </summary>
         /// <param name="target"></param>
         /// <param name="includeChildren"></param>
         /// <returns></returns>
-        public static BoxCollider AddCollider(Transform target, bool includeChildren = true)
+        public static BoxCollider AddBoxCollider(Transform target, bool includeChildren = true)
         {
-            BoxCollider bc = target.GetComponent<BoxCollider>();
-            if (bc != null)
-            {
-                Debug.Log($"想给物体{target.name}添加BoxCollider，但是物体上已经存在了");
-            }
-            else
-            {
-                
-                Transform originParent = target.parent;
-                Vector3 originLocalPos = target.localPosition;
-                Quaternion originLocalRot = target.localRotation;
-                Vector3 originLocalScale = target.localScale;
-                
-                target.SetParent(null);
-                target.localPosition=Vector3.zero;
-                target.localRotation=Quaternion.identity;
-                target.localScale=Vector3.one;
-                
-                Bounds bounds = GetBounds(target, includeChildren);
-                bc = target.gameObject.AddComponent<BoxCollider>();
-                bc.center = bounds.center - target.position;
-                bc.size = bounds.size;
-                
-                target.SetParent(originParent);
-                target.localPosition = originLocalPos;
-                target.localRotation = originLocalRot;
-                target.localScale = originLocalScale;
-            }
+            Transform originParent = target.parent;
+            Vector3 originLocalPos = target.localPosition;
+            Quaternion originLocalRot = target.localRotation;
+            Vector3 originLocalScale = target.localScale;
+
+            target.SetParent(null);
+            target.localPosition = Vector3.zero;
+            target.localRotation = Quaternion.identity;
+            target.localScale = Vector3.one;
+
+            Bounds bounds = GetBounds(target, includeChildren);
+            BoxCollider bc = target.gameObject.AddComponent<BoxCollider>();
+            bc.center = bounds.center - target.position;
+            bc.size = bounds.size;
+
+            target.SetParent(originParent);
+            target.localPosition = originLocalPos;
+            target.localRotation = originLocalRot;
+            target.localScale = originLocalScale;
 
             return bc;
+        }
+
+        /// <summary>
+        /// 将物体等比例填充到Bound内
+        /// 不会超出Bound边界，且模型不会拉伸变形
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="bounds"></param>
+        /// <param name="includeChildren"></param>
+        public static void FillModelToBound(Transform target,Bounds bounds, bool includeChildren = true)
+        {
+            
+        }
+
+        /// <summary>
+        /// 将Bound绘制出来
+        /// </summary>
+        /// <param name="bounds"></param>
+        public static void DrawBound(Bounds bounds)
+        {
+            
         }
     }
 }
