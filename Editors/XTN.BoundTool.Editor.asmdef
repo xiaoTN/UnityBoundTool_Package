@@ -1,3 +1,18 @@
 {
-  "name": "XTN.BoundTool.Editor"
+    "name": "XTN.BoundTool.Editor",
+    "rootNamespace": "",
+    "references": [
+        "XTN.BoundTool"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
